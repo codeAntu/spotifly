@@ -5,7 +5,7 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Auth from "./pages/Auth.tsx";
 import Player from "./pages/Player.tsx";
-import Login from "./pages/Login.tsx";
+import Home from "./pages/Home.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,13 +21,12 @@ const router = createBrowserRouter([
     element: <Player />,
   },
   {
-    path: "login",
-    element: <Login />,
-  },
-  {
     path: "*",
     element: <div>404</div>,
-  },
+  },{
+    path: "/home",
+    element: <Home />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
