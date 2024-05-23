@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useStore } from "./store/store";
 import queryString from "query-string";
 import ls from "./ls/ls";
-import { getAccessToken, getRefreshToken } from "./auth";
+import { getAccessToken, getRefreshToken } from "./auth/auth";
 
 const App: React.FC = () => {
   const accessToken = useStore((state) => state.accessToken);
@@ -57,7 +57,7 @@ const App: React.FC = () => {
         setExpired_at(new Date(new Date().getTime() + data.expires_in * 1000));
         if (data.refresh_token) setRefreshToken(data.refresh_token);
       });
-      navigate("/home");
+      // navigate("/home");
     }
   });
 
