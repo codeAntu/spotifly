@@ -99,9 +99,7 @@ export default function Home() {
           </div>
           <Player trackUri={playing} />
         </div>
-        <div ref={ref} className="h-1 w-1">
-          Loading
-        </div>
+        <div ref={ref} className="h-1 w-1"></div>
       </div>
     </div>
   );
