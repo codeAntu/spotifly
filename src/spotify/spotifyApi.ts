@@ -6,33 +6,31 @@ import { useStore } from "../store/store";
 
 const spotifyApi = new SpotifyWebApi();
 
-async function getAlbums(accessToken: string) {
+async function getAlbums(accessToken: string, searchTracks: string) {
   spotifyApi.setAccessToken(accessToken);
-  const data = await spotifyApi.searchTracks("Love");
-    
-  console.log(data);
-  
-
+  const data = await spotifyApi.searchTracks(searchTracks);
+  // console.log(data);
   const newData = data.tracks.items.map((item) => {
     return {
-      artist: item.artists[0].name,
+      artist: item.artists[0].name || "Unknown",
       title: item.name,
       uri: item.uri,
       albumUri: item.album.uri,
       img: item.album.images[0].url,
+      duration: item.duration_ms,
+      // @ts-ignore
+      release_date: item.album.release_date,
     };
   });
-  
 
-  return newData;
+  return [newData, data.tracks.next];
 }
 
-async function connect(accessToken : string) {
+async function connect(accessToken: string) {
   spotifyApi.setAccessToken(accessToken);
   const data = await spotifyApi.getMe();
   console.log(data);
   return data;
 }
 
-
-export { getAlbums , connect};
+export { getAlbums, connect };
