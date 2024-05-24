@@ -1,4 +1,3 @@
-import ls from "../ls/ls";
 import { useStore } from "../store/store";
 import { getAlbums, connect } from "../spotify/spotifyApi";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +35,7 @@ export default function Home() {
     setSongs(data);
   }
 
-  console.log(songs, "songs");
+  // console.log(songs, "songs");
 
   return (
     <div className="w-full  h-[100dvh] flex items-center flex-col">
@@ -44,12 +43,12 @@ export default function Home() {
         <div className="flex flex-col gap-3 ">
           <div className="text-2xl font-bold">Heading</div>
           <div className="border-2 border-black rounded-xl flex justify-normal items-center px-2 py-2 gap-3 ">
-
-            <Search 
-              size={24}
-              className="text-black"
+            <Search size={24} className="text-black" />
+            <input
+              type="text"
+              placeholder="search any song"
+              className="w-full text-lg font-semibold text-black/70 outline-none border-none"
             />
-            <input type="text" placeholder="search any song" className="w-full text-lg font-semibold text-black/70 outline-none border-none" />
           </div>
         </div>
         <div>
@@ -60,13 +59,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <button 
-        onClick={getSongs}
-        className="bg-black text-white p-2 rounded-lg"
-      >
+      <button onClick={getSongs} className="bg-black text-white p-2 rounded-lg">
         Get Songs
       </button>
-
     </div>
   );
 }
@@ -74,7 +69,11 @@ export default function Home() {
 function Song(song: Song) {
   return (
     <div className="bg-black/5 rounded-xl flex ">
-      <img src={song.img} alt="" className="w-24 aspect-square px-2 py-2 rounded-[17PX] "  />
+      <img
+        src={song.img}
+        alt=""
+        className="w-24 aspect-square px-2 py-2 rounded-[17PX] "
+      />
       <div className="py-2 px-2">
         <div className="text-lg font-bold line-clamp-1">{song.title}</div>
         <div className="text-lg font-semibold text-black/70">{song.artist}</div>

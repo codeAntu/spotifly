@@ -34,8 +34,3 @@ export const useStore = create<Store>((set) => {
     },
   };
 });
-
-// accessToken: get("accessToken") || "",
-// refreshToken: get("refreshToken") || "",
-// setAccessToken: (accessToken: string) => set({ accessToken }),
-// setRefreshToken: (refreshToken: string) => set({ refreshToken }),

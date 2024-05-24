@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "./store/store";
 import queryString from "query-string";
-import ls from "./ls/ls";
 import { getAccessToken, getRefreshToken } from "./auth/auth";
 
 const App: React.FC = () => {
@@ -32,8 +31,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (accessToken && Date.now() - expired_at.getTime() < 0) {
       navigate("/home");
-      // window.location.href = "/home";
-    }
+    } 
 
     if (!accessToken && !code) {
       console.log("no access token and no code");
@@ -58,37 +56,14 @@ const App: React.FC = () => {
         setExpired_at(new Date(new Date().getTime() + data.expires_in * 1000));
         if (data.refresh_token) setRefreshToken(data.refresh_token);
       });
-      // navigate("/home");
     }
   });
 
-
   return (
     <div className="App">
-      <div>Hello</div>
-      <button
-        onClick={() => {
-          ls.clear();
-          console.log("clicked");
-        }}
-      >
-        Clear
-      </button>
-      <button
-        onClick={() => {
-          console.log(accessToken, refreshToken, expired_at);
-        }}
-      >
-        Log
-      </button>
-
-      <button
-        onClick={() => {
-          setExpired_at(new Date(new Date().getTime() - 3800 * 1000));
-        }}
-      >
-        ser
-      </button>
+      <header className="App-header">
+        <p>Spotify</p>
+      </header>
     </div>
   );
 };
