@@ -3,6 +3,7 @@ import { getAlbums, connect } from "../spotify/spotifyApi";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
+import ls from "../ls/ls";
 
 interface Song {
   albumUri: string;
@@ -62,6 +63,16 @@ export default function Home() {
       <button onClick={getSongs} className="bg-black text-white p-2 rounded-lg">
         Get Songs
       </button>
+      <button
+        onClick={() => {
+          ls.clear();
+        }}
+        className="bg-black text-white p-2 rounded-lg"
+      >
+        Logout
+      </button>
+
+      <Player trackUri="5RWZ6TVZ0HeFTdRWu3VQ7w" />
     </div>
   );
 }
@@ -79,6 +90,7 @@ function Song(song: Song) {
         <div className="text-lg font-semibold text-black/70">{song.artist}</div>
       </div>
     </div>
+
   );
 }
 
@@ -88,8 +100,8 @@ function Player({ trackUri }: { trackUri: string }) {
   return (
     <iframe
       src={`https://open.spotify.com/embed/track/5RWZ6TVZ0HeFTdRWu3VQ7w`}
-      width="5000"
-      height="8000"
+      width="500"
+      height="300"
       frameBorder="0"
       allowTransparency={true}
       allow="encrypted-media"

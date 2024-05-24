@@ -1,11 +1,15 @@
 import SpotifyWebApi from "spotify-web-api-js";
+import { useStore } from "../store/store";
+
+// const accessToken = import.meta.env.VITE_CLIENT_ID as string;
+// const accessToken = useStore((state) => state.accessToken);
 
 const spotifyApi = new SpotifyWebApi();
 
 async function getAlbums(accessToken: string) {
   spotifyApi.setAccessToken(accessToken);
   const data = await spotifyApi.searchTracks("Love");
-
+    
   console.log(data);
   
 
@@ -18,15 +22,17 @@ async function getAlbums(accessToken: string) {
       img: item.album.images[0].url,
     };
   });
+  
 
   return newData;
 }
 
-async function connect(accessToken: string) {
+async function connect(accessToken : string) {
   spotifyApi.setAccessToken(accessToken);
   const data = await spotifyApi.getMe();
   console.log(data);
   return data;
 }
 
-export { getAlbums, connect };
+
+export { getAlbums , connect};
