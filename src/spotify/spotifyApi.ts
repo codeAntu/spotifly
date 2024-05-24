@@ -7,7 +7,7 @@ import { useStore } from "../store/store";
 const spotifyApi = new SpotifyWebApi();
 
 async function getAlbums(accessToken: string) {
-  // spotifyApi.setAccessToken(accessToken);
+  spotifyApi.setAccessToken(accessToken);
   const data = await spotifyApi.searchTracks("Love");
    
   const newData = data.tracks.items.map((item) => {

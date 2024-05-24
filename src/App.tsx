@@ -32,6 +32,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (accessToken && Date.now() - expired_at.getTime() < 0) {
       navigate("/home");
+      // window.location.href = "/home";
     }
 
     if (!accessToken && !code) {

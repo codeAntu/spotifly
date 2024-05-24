@@ -17,15 +17,14 @@ const router = createBrowserRouter([
     element: <Auth />,
   },
   {
-    path: "player",
-    element: <Player />,
-  },
-  {
     path: "*",
     element: <div>404</div>,
   },{
     path: "/home",
     element: <Home />,
+  },{
+    path: "/player",
+    element: <Player />,
   }
 ]);
 
