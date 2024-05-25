@@ -1,11 +1,8 @@
 import { useStore } from "../store/store";
 import { getAlbums, connect } from "../spotify/spotifyApi";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
-import ls from "../ls/ls";
-import { get } from "http";
-import SpotifyWebApi from "spotify-web-api-js";
 import { useInView } from "react-intersection-observer";
 
 interface Song {
@@ -64,8 +61,7 @@ export default function Home() {
   }, [search]);
 
   useEffect(() => {
-    if (inView) {
-      if (!nextUrl) return console.log("No more songs");
+    if (inView && nextUrl) {
       getNextSongs(nextUrl);
     }
   }, [inView, search]);
@@ -112,6 +108,21 @@ function Song({ song, onclick }: { song: Song; onclick: () => void }) {
     return minutes + ":" + (parseInt(seconds) < 10 ? "0" : "") + seconds;
   }
 
+  function getReleaseDate(date: string) {
+    const currentDate = new Date();
+    const releaseDate = new Date(date);
+    const diffTime = Math.abs(currentDate.getTime() - releaseDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffWeeks = Math.ceil(diffDays / 7);
+    const diffMonths = Math.ceil(diffDays / 30);
+    const diffYears = Math.ceil(diffDays / 365);
+
+    if (diffYears > 1) return `${diffYears} years ago`;
+    if (diffMonths > 1) return `${diffMonths} months ago`;
+    if (diffWeeks > 1) return `${diffWeeks} weeks ago`;
+    if (diffDays > 1) return `${diffDays} days ago`;
+  }
+
   return (
     <div
       className="bg-black/5 rounded-3xl flex border-black/5 border "
@@ -134,7 +145,7 @@ function Song({ song, onclick }: { song: Song; onclick: () => void }) {
           </div>
           <div className="p-1 bg-black/35 rounded-full"></div>
           <div className="text-xs py-0.5 rounded-full font-semibold ">
-            {song.release_date}
+            {getReleaseDate(song.release_date)}
           </div>
         </div>
       </div>
