@@ -56,7 +56,7 @@ export default function Home() {
   useEffect(() => {
     let timer = setTimeout(() => {
       if (search.length > 0) getSongs(search);
-    }, 1000);
+    }, 300);
 
     return () => {
       clearTimeout(timer);
