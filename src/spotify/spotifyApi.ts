@@ -3,7 +3,6 @@ import SpotifyWebApi from "spotify-web-api-js";
 const spotifyApi = new SpotifyWebApi();
 
 async function getAlbums(accessToken: string, searchTracks: string) {
-  spotifyApi.setAccessToken(accessToken);
   const data = await spotifyApi.searchTracks(searchTracks);
   console.log(data);
   const newData = data.tracks.items.map((item) => {

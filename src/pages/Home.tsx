@@ -37,9 +37,9 @@ export default function Home() {
     }
   }, []);
 
-  // useEffect(() => {
-  //  connect(accessToken);
-  // }, []);
+  useEffect(() => {
+    connect(accessToken);
+  }, []);
 
   async function getSongs(search: string) {
     const [data, next] = await getAlbums(accessToken, search);
@@ -69,8 +69,6 @@ export default function Home() {
       getNextSongs(nextUrl);
     }
   }, [inView, search]);
-
-  console.log(songs);
 
   return (
     <div className="w-full h-[100dvh] flex items-center flex-col">
