@@ -76,12 +76,12 @@ export default function Home() {
     <div className="w-full h-[100dvh] flex items-center flex-col">
       <div className="w-full max-w-[1200px] p-4 grid gap-5 pb-[200px]">
         <div className="flex flex-col gap-3 ">
-          <div className="text-2xl font-bold text-[#19e68c]">Spotifly</div>
-          <div className="border border-black/80 rounded-xl flex justify-normal items-center px-2 py-2 gap-3 ">
+          <div className="text-2xl font-bold text-[#4cce96]">Spotifly</div>
+          <div className="border border-black/80 rounded-xl flex justify-normal items-center px-2 py-2 gap-2 ">
             <Search size={24} className="text-black/60" />
             <input
               type="text"
-              placeholder="search any song"
+              placeholder="Search any song"
               className="w-full text-lg font-semibold text-black/70 outline-none border-none"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
