@@ -9,10 +9,10 @@ const spotifyApi = new SpotifyWebApi();
 async function getAlbums(accessToken: string, searchTracks: string) {
   spotifyApi.setAccessToken(accessToken);
   const data = await spotifyApi.searchTracks(searchTracks);
-  // console.log(data);
+  console.log(data);
   const newData = data.tracks.items.map((item) => {
     return {
-      artist: item.artists[0].name || "Unknown",
+      artists: item.artists.map((artist) => artist.name).join(", "), 
       title: item.name,
       uri: item.uri,
       albumUri: item.album.uri,

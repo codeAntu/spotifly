@@ -4,11 +4,12 @@ import { Buffer } from "buffer";
 
 const clientId = import.meta.env.VITE_CLIENT_ID as string;
 const clientSecret = import.meta.env.VITE_CLIENT_SECRET as string;
+const redirectUri = import.meta.env.VITE_REDIRECT_URI as string;
+
 const encodedCredentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
   "base64"
 );
 const code = queryString.parse(window.location.search).code as string;
-const redirectUri = "http://localhost:5173/";
 
 async function getAccessToken(code: string) {
   const response = await axios({

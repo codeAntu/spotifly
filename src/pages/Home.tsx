@@ -10,7 +10,7 @@ import { useInView } from "react-intersection-observer";
 
 interface Song {
   albumUri: string;
-  artist: string;
+  artists: string;
   img: string;
   title: string;
   uri: string;
@@ -70,13 +70,15 @@ export default function Home() {
     }
   }, [inView, search]);
 
+  console.log(songs);
+
   return (
     <div className="w-full h-[100dvh] flex items-center flex-col">
       <div className="w-full max-w-[1200px] p-4 grid gap-5 pb-[200px]">
         <div className="flex flex-col gap-3 ">
-          <div className="text-2xl font-bold">Heading</div>
-          <div className="border-2 border-black rounded-xl flex justify-normal items-center px-2 py-2 gap-3 ">
-            <Search size={24} className="text-black" />
+          <div className="text-2xl font-bold text-[#19e68c]">Spotifly</div>
+          <div className="border border-black/80 rounded-xl flex justify-normal items-center px-2 py-2 gap-3 ">
+            <Search size={24} className="text-black/60" />
             <input
               type="text"
               placeholder="search any song"
@@ -124,13 +126,15 @@ function Song({ song, onclick }: { song: Song; onclick: () => void }) {
       />
       <div className="py-2 px-2 ">
         <div className="text-lg font-bold line-clamp-1">{song.title}</div>
-        <div className="text-sm font-semibold text-black/70">{song.artist}</div>
+        <div className="text-sm font-semibold text-black/60 line-clamp-1">
+          {song.artists}
+        </div>
         <div className="flex gap-2 items-center">
           <div className="text-xs py-0.5 rounded-full font-semibold ">
             {" "}
             {getDuration(song.duration)}
           </div>
-          <div className="p-1 bg-black/30 rounded-full"></div>
+          <div className="p-1 bg-black/35 rounded-full"></div>
           <div className="text-xs py-0.5 rounded-full font-semibold ">
             {song.release_date}
           </div>

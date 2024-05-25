@@ -16,7 +16,7 @@ const App: React.FC = () => {
   const code = queryString.parse(window.location.search).code as string;
   const client_id = "def12aa29212414cb49a5b71dc4f8131";
   const scope = "user-read-private user-read-email";
-  const redirect_uri = "http://localhost:5173/";
+  const redirect_uri = import.meta.env.VITE_REDIRECT_URI as string;
   const state = "34fFs29kd09";
 
   const Auth_url =
