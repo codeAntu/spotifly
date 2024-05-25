@@ -1,8 +1,4 @@
 import SpotifyWebApi from "spotify-web-api-js";
-import { useStore } from "../store/store";
-
-// const accessToken = import.meta.env.VITE_CLIENT_ID as string;
-// const accessToken = useStore((state) => state.accessToken);
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -12,7 +8,7 @@ async function getAlbums(accessToken: string, searchTracks: string) {
   console.log(data);
   const newData = data.tracks.items.map((item) => {
     return {
-      artists: item.artists.map((artist) => artist.name).join(", "), 
+      artists: item.artists.map((artist) => artist.name).join(", "),
       title: item.name,
       uri: item.uri,
       albumUri: item.album.uri,
@@ -28,9 +24,7 @@ async function getAlbums(accessToken: string, searchTracks: string) {
 
 async function connect(accessToken: string) {
   spotifyApi.setAccessToken(accessToken);
-  const data = await spotifyApi.getMe();
-  console.log(data);
-  return data;
+  return;
 }
 
 export { getAlbums, connect };

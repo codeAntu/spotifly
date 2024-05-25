@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStore } from "./store/store";
 import queryString from "query-string";
-import ls from "./ls/ls";
 import { getAccessToken, getRefreshToken } from "./auth/auth";
 
 const App: React.FC = () => {
