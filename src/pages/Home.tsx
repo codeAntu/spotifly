@@ -101,28 +101,27 @@ export default function Home() {
   );
 }
 
+function getReleaseDate(date: string) {
+  const currentDate = new Date();
+  const releaseDate = new Date(date);
+  const diffTime = Math.abs(currentDate.getTime() - releaseDate.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const diffWeeks = Math.ceil(diffDays / 7);
+  const diffMonths = Math.ceil(diffDays / 30);
+  const diffYears = Math.ceil(diffDays / 365);
+
+  if (diffYears > 1) return `${diffYears} years ago`;
+  if (diffMonths > 1) return `${diffMonths} months ago`;
+  if (diffWeeks > 1) return `${diffWeeks} weeks ago`;
+  if (diffDays > 1) return `${diffDays} days ago`;
+}
+function getDuration(duration: number) {
+  const minutes = Math.floor(duration / 60000);
+  const seconds = ((duration % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (parseInt(seconds) < 10 ? "0" : "") + seconds;
+}
+
 function Song({ song, onclick }: { song: Song; onclick: () => void }) {
-  function getDuration(duration: number) {
-    const minutes = Math.floor(duration / 60000);
-    const seconds = ((duration % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (parseInt(seconds) < 10 ? "0" : "") + seconds;
-  }
-
-  function getReleaseDate(date: string) {
-    const currentDate = new Date();
-    const releaseDate = new Date(date);
-    const diffTime = Math.abs(currentDate.getTime() - releaseDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    const diffWeeks = Math.ceil(diffDays / 7);
-    const diffMonths = Math.ceil(diffDays / 30);
-    const diffYears = Math.ceil(diffDays / 365);
-
-    if (diffYears > 1) return `${diffYears} years ago`;
-    if (diffMonths > 1) return `${diffMonths} months ago`;
-    if (diffWeeks > 1) return `${diffWeeks} weeks ago`;
-    if (diffDays > 1) return `${diffDays} days ago`;
-  }
-
   return (
     <div
       className="bg-black/5 rounded-3xl flex border-black/5 border "
