@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useStore } from "./store/store";
 import queryString from "query-string";
 import { getAccessToken, getRefreshToken } from "./auth/auth";
+import { Search } from "lucide-react";
 
 const App: React.FC = () => {
   const accessToken = useStore((state) => state.accessToken);
@@ -62,8 +63,25 @@ const App: React.FC = () => {
   });
 
   return (
-    <div className="App">
-      <h1>Spotify</h1>
+    <div className="w-full h-[100dvh] flex items-center flex-col">
+      <div className="w-full max-w-[1200px] p-4 grid gap-5 pb-[200px]">
+        <div className="flex flex-col gap-3 ">
+          <div className="text-2xl font-bold text-[#4cce96]">Spotifly</div>
+          <div className="border border-black/80 rounded-xl flex justify-normal items-center px-2 py-2 gap-2 ">
+            <Search size={24} className="text-black/60" />
+            <input
+              type="text"
+              placeholder="Search any song or artist "
+              className="w-full text-lg font-semibold text-black/70 outline-none border-none"
+            />
+          </div>
+        </div>
+        <div>
+          <div className="text-lg font-semibold text-black/60 text-center py-10 px-5">
+            Search for a song or artist and listen to it here...
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

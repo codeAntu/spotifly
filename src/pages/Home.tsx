@@ -20,7 +20,7 @@ export default function Home() {
   const expired_at = useStore((state) => state.expired_at);
   const navigate = useNavigate();
   const [songs, setSongs] = useState<any>([]);
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState<string>("Love");
   const [nextUrl, setNextUrl] = useState<string>("");
   const [playing, setPlaying] = useState<string>("");
   const [ref, inView] = useInView({
@@ -66,6 +66,8 @@ export default function Home() {
     }
   }, [inView, search]);
 
+  console.log(songs);
+
   return (
     <div className="w-full h-[100dvh] flex items-center flex-col">
       <div className="w-full max-w-[1200px] p-4 grid gap-5 pb-[200px]">
@@ -75,7 +77,7 @@ export default function Home() {
             <Search size={24} className="text-black/60" />
             <input
               type="text"
-              placeholder="Search any song"
+              placeholder="Search any song or artist "
               className="w-full text-lg font-semibold text-black/70 outline-none border-none"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -83,6 +85,11 @@ export default function Home() {
           </div>
         </div>
         <div>
+          {songs.length === 0 && (
+            <div className="text-lg font-semibold text-black/60 text-center py-10 px-5">
+              Search for a song or artist and listen to it here...
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {songs.map((song: Song) => (
               <Song
@@ -161,7 +168,7 @@ function Player({ trackUri }: { trackUri: string }) {
       height="160"
       allowTransparency={true}
       allow="encrypted-media"
-      className="fixed bottom-0 z-10 right-0 left-0 bg-white px-2.5"
+      className="fixed bottom-0 z-10 right-0 left-0 bg-white px-2.5 bg-transparent"
     ></iframe>
   );
 }
