@@ -1,9 +1,9 @@
-import { useStore } from "../store/store";
-import { getAlbums, connect } from "../spotify/spotifyApi";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
+import { connect, getAlbums } from "../spotify/spotifyApi";
+import { useStore } from "../store/store";
 
 interface Song {
   albumUri: string;
